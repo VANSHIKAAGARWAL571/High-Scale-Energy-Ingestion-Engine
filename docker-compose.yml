@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+    container_name: energy-app
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+      SERVICE_PORT: 3000
+      API_VERSION: 1
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASS: postgres
+      DB_NAME: energy_db
+    depends_on:
+      - db
+    networks:
+      - energy-network
+    restart: unless-stopped
+
+  db:
+    image: postgres:15
+    container_name: energy-db
+    ports:
+      - '55432:5432'
+    environment:
+      POSTGRES_DB: energy_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - energy-network
+    restart: unless-stopped
+
+volumes:
+  pg_data:
+
+networks:
+  energy-network:
+    driver: bridge
+
