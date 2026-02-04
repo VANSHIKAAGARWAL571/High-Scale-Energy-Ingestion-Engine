@@ -23,13 +23,6 @@ export class EnvDto {
   DB_NAME: string;
 
   @IsString()
-  JWT_SECRET: string;
-
-  @IsNumber()
-  @Transform(({ value }) => Number(value))
-  JWT_EXPIRES_IN: number;
-
-  @IsString()
   API_VERSION: string;
 
   @IsString()
