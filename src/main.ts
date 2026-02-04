@@ -38,7 +38,7 @@ async function bootstrap() {
     exceptionFactory: (errors)=> new UnprocessableEntityException(errors)
   }))
 
-  const port = config.env.SERVICE_PORT;
+  const port = Number(config.env.SERVICE_PORT)
   const logger = new Logger('Bootstrap');
 
   await app.listen(port?? 3000, async()=>{

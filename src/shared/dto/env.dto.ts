@@ -1,10 +1,9 @@
-import { Transform, Type } from 'class-transformer';
+import { Transform } from 'class-transformer';
 import { IsNumber, IsString } from 'class-validator';
 
 export class EnvDto {
-  @Type(() => Number)
-  @IsNumber()
-  SERVICE_PORT: number;
+  @IsString()
+  SERVICE_PORT: string;
 
   @IsString()
   DB_HOST: string;
