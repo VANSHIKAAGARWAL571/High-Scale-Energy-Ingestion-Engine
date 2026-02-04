@@ -1,8 +1,8 @@
-import { Transform } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import { IsNumber, IsString } from 'class-validator';
 
 export class EnvDto {
-  @Transform(({ value }) => parseInt(value))
+  @Type(() => Number)
   @IsNumber()
   SERVICE_PORT: number;
 
